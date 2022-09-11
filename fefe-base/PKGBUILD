@@ -1,0 +1,98 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-base
+pkgdesc="Base system configuration for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+
+pkgver=0.0.1
+pkgrel=1
+epoch=0
+groups=()
+
+# Base packages
+depends=(
+	base
+	linux
+	linux-firmware
+)
+# Base Devel
+depends+=(
+	archlinux-keyring
+	autoconf
+	automake
+	binutils
+	bison
+	fakeroot
+	file
+	findutils
+	flex
+	gawk
+	gcc
+	gettext
+	grep
+	groff
+	gzip
+	libtool
+	m4
+	make
+	pacman
+	patch
+	pkgconf
+	sed
+	sudo
+	texinfo
+	which
+)
+# Coll.
+depends+=(
+	networkmanager
+	sof-firmware
+	man-db
+	man-pages
+	nano
+	neovim
+	htop
+	git
+)
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+
+backup=()
+options=()
+install=fefe-base.install
+changelog=
+source=("$pkgname-$pkgver.tar.gz"
+        "$pkgname-$pkgver.patch")
+#todo: add pacman.conf; /mnt/etc/hosts; /mnt/etc/vconsole.conf; /mnt/etc/locale.conf; /mnt/etc/locale.gen; /mnt/etc/sudoers; x11 keyboard config;
+noextract=()
+md5sums=()
+validpgpkeys=()
+
+prepare() {
+	cd "$pkgname-$pkgver"
+	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+}
+
+build() {
+	cd "$pkgname-$pkgver"
+	./configure --prefix=/usr
+	make
+}
+
+check() {
+	cd "$pkgname-$pkgver"
+	make -k check
+}
+
+package() {
+	cd "$pkgname-$pkgver"
+	make DESTDIR="$pkgdir/" install
+}

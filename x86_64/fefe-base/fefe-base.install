@@ -21,6 +21,8 @@ post_install() {
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
+	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+	locale-gen
 	systemctl enable --now NetworkManager
 }
 

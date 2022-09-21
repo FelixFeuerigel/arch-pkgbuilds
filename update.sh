@@ -67,7 +67,7 @@ for x in ${x86_pkgbuild}; do
 done
 
 git add .
-git commit -m "$COMMIT_MESSAGE"
+git commit -m "$COMMIT_MESSAGE" || echo "no PKGBUILD updates to commit"
 git push
 
 cd $REPO_DIR/x86_64
@@ -105,8 +105,8 @@ echo "Uploading the database git repo!"
 echo "################################"
 
 git add .
-#git commit -m "$COMMIT_MESSAGE"
-#git push
+git commit -m "$COMMIT_MESSAGE"  || echo "no database updates to commit"
+git push
 
 echo "#######################################"
 echo "Packages in the repo have been updated!"

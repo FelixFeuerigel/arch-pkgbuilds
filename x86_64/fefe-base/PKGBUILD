@@ -69,31 +69,30 @@ backup=()
 options=()
 install=fefe-base.install
 changelog=
-source=("files/locale.conf"
+source=("files/hosts",
+		"files/locale.conf"
         "files/locale.gen"
 		"files/vconsole.conf")
-#todo: add pacman.conf; /mnt/etc/hosts; /mnt/etc/vconsole.conf; /mnt/etc/locale.conf; /mnt/etc/locale.gen; /mnt/etc/sudoers; x11 keyboard config;
+#TODO: add /etc/pacman.conf, /etc/sudoers and x11 keyboard config
 noextract=()
 b2sums=()
 validpgpkeys=()
 
 prepare() {
-	cd "$pkgname-$pkgver"
-	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
 }
 
 build() {
-	cd "$pkgname-$pkgver"
-	./configure --prefix=/usr
-	make
 }
 
 check() {
-	cd "$pkgname-$pkgver"
-	make -k check
 }
 
 package() {
-	cd "$pkgname-$pkgver"
-	make DESTDIR="$pkgdir/" install
+	install -Dm 0644 hosts "$pkgdir/etc/hosts"
+	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
+	install -Dm 0644 locale.gen "$pkgdir/etc/locale.gen"
+	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
+	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
+    #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
+	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

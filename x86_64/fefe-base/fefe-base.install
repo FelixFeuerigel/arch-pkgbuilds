@@ -3,9 +3,12 @@
 # you don't need (and this header).
 
 ## arg 1:  the new package version
-#pre_install() {
-	# do something here
-#}
+pre_install() {
+	# make backup of files that will be replaced by package files
+	cp /etc/locale.gen /etc/locale.gen.backup
+	cp /etc/pacman.conf /etc/pacman.conf.backup
+	cp /etc/sudoers /etc/sudoers.backup
+}
 
 ## arg 1:  the new package version
 post_install() {
@@ -21,8 +24,19 @@ post_install() {
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
+	# set timezone
 	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+	# input hostname in hosts file
+	if [ -n "$(cat /mnt/etc/hostname)" ]; then
+		sed -i 's/^##hostname_gets_auto_replaced##/$(cat /mnt/etc/hostname)/' /mnt/etc/hosts
+	else
+		echo "Failed to set hostname in \"/mnt/etc/hosts\":"
+		echo "WARNING: \"/mnt/etc/hostname\" is empty"
+	fi
+	# generate locales in locale.gen
 	locale-gen
+
+	# enable Services for autostart
 	systemctl enable --now NetworkManager
 }
 
@@ -32,6 +46,9 @@ post_upgrade() {
 #}
 
 ## arg 1:  the old package version
-#post_remove() {
-	# do something here
-#}
+post_remove() {
+	# restore files from backup that had beed replaced by package files
+	cp /etc/locale.gen.backup /etc/locale.gen
+	cp /etc/pacman.conf.backup /etc/pacman.conf
+	cp /etc/sudoers /etc/sudoers.backup
+}

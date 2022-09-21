@@ -108,3 +108,5 @@ git add .
 echo "#######################################"
 echo "Packages in the repo have been updated!"
 echo "#######################################"
+
+## TODO: After testing package functionality check it for errors using namcap

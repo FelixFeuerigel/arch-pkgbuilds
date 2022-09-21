@@ -13,51 +13,7 @@ pkgrel=1
 epoch=0
 groups=()
 
-# Base packages
-depends=(
-	base
-	linux
-	linux-firmware
-)
-# Base Devel
-depends+=(
-	archlinux-keyring
-	autoconf
-	automake
-	binutils
-	bison
-	fakeroot
-	file
-	findutils
-	flex
-	gawk
-	gcc
-	gettext
-	grep
-	groff
-	gzip
-	libtool
-	m4
-	make
-	pacman
-	patch
-	pkgconf
-	sed
-	sudo
-	texinfo
-	which
-)
-# Coll.
-depends+=(
-	networkmanager
-	sof-firmware
-	man-db
-	man-pages
-	nano
-	neovim
-	htop
-	git
-)
+depends=()
 makedepends=()
 checkdepends=()
 optdepends=()
@@ -69,25 +25,81 @@ backup=()
 options=()
 install=fefe-base.install
 changelog=
-source=("files/hosts",
-		"files/locale.conf"
-        "files/locale.gen"
-		"files/vconsole.conf")
+source=(
+	"hosts"
+	"locale.conf"
+    "locale.gen"
+	"vconsole.conf"
+)
 #TODO: add /etc/pacman.conf, /etc/sudoers and x11 keyboard config
 noextract=()
-b2sums=()
+b2sums=('326e12a154c24c2c27ca71239e5d5d15acc2d9fef6215f848338808c51d9b04dbe3d464034f2fd9d45c0f26cd0f8d8d8fdf5c296b77d3f5710855f76b00d7e2b'
+        'fbb6feff60c7a9336b1f9b687dd3a180c03d895a6c093e4b929138c39d21e31096da24ff2033964899854ee684041c3a75e7e2223b204b245a2b96823ca5c556'
+        '5dbe00795add108654535b514d6d29b634cea71879e5c0a18107145fa0424fcfe52ce4c1879ab306754068113a3040f7b0b1cd9fcf767e6da40c10eabdf36e5c'
+        '819fbbcba61ad0572f02a1fc36ca57b9adbc4bc8a8b753ee9ddd7a88b1b820ee853882ece979f00bd746bff6d06ca91187cb1c5a47f3902c65e38525b2353717')
 validpgpkeys=()
 
-prepare() {
-}
+#prepare() {
+#}
 
-build() {
-}
+#build() {
+#}
 
-check() {
-}
+#check() {
+#}
 
 package() {
+	# Base packages
+	depends=(
+		base
+		linux
+		linux-firmware
+	)
+	# Base Devel
+	depends+=(
+		archlinux-keyring
+		autoconf
+		automake
+		binutils
+		bison
+		fakeroot
+		file
+		findutils
+		flex
+		gawk
+		gcc
+		gettext
+		grep
+		groff
+		gzip
+		libtool
+		m4
+		make
+		pacman
+		patch
+		pkgconf
+		sed
+		sudo
+		texinfo
+		which
+	)
+	# for bilding packages
+	depends+=( 
+		pacman-contrib
+		devtools
+	)
+	# Coll.
+	depends+=(
+		networkmanager
+		sof-firmware
+		man-db
+		man-pages
+		nano
+		neovim
+		htop
+		git
+	)
+
 	install -Dm 0644 hosts "$pkgdir/etc/hosts"
 	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
 	install -Dm 0644 locale.gen "$pkgdir/etc/locale.gen"

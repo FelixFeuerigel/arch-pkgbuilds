@@ -1,0 +1,3 @@
+chroot-root/*
+*.pkg.tar.zst*
+*.log

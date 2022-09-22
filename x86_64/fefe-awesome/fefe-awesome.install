@@ -1,0 +1,9 @@
+post_install() {
+	post_upgrade
+}
+
+post_upgrade() {
+	# enable Services for autostart
+    arch-chroot /mnt systemctl enable sddm.service
+    arch-chroot /mnt systemctl enable bluetooth.service
+}

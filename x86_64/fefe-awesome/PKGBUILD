@@ -1,0 +1,97 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-awsome
+pkgdesc="Base system configuration for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+
+pkgver=0.0.1
+pkgrel=1
+epoch=0
+groups=()
+
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+
+backup=()
+options=()
+install=fefe-awesome.install
+changelog=
+source=(
+
+)
+noextract=()
+b2sums=(
+
+)
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	# Desktop base packages
+	depends=(
+		sddm
+		awesome
+		nitrogen
+		dmenu
+		rofi
+		lxappearance
+		xterm
+		alacritty
+		fish
+		picom
+		lxsession
+		polkit
+	)
+	# Base Devel
+	depends+=(
+		keepassxc
+		firefox
+		gedit
+	)
+	# system tools
+	depends+=( 
+		pcmanfm
+		gvfs-smb
+		smbclient
+		qpwgraph # audio graph
+		udisks2 # automount
+		udiskie
+	)
+	# audio
+	depends+=(
+		pipewire
+		lib32-pipewire
+		pipewire-alsa
+		pipewire-pulse
+		pipewire-jack
+		lib32-pipewire-jack
+		wireplumber
+	)
+	# bluetooth
+	depends+=(
+		bluez
+		bluez-utils
+		blueman
+	)
+	
+	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
+    #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
+	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
+}

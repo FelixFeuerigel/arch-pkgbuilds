@@ -97,6 +97,7 @@ package() {
 		nano
 		neovim
 		htop
+		bottom
 		git
 	)
 

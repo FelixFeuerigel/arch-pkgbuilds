@@ -44,6 +44,9 @@ validpgpkeys=()
 #}
 
 package() {
+	depends=(
+		fefe-base
+	)
 	# Desktop base packages
 	depends=(
 		sddm
@@ -67,22 +70,20 @@ package() {
 	)
 	# system tools
 	depends+=( 
-		pcmanfm
-		gvfs-smb
-		smbclient
-		qpwgraph # audio graph
-		udisks2 # automount
-		udiskie
-	)
-	# audio
-	depends+=(
-		pipewire
-		lib32-pipewire
-		pipewire-alsa
-		pipewire-pulse
-		pipewire-jack
-		lib32-pipewire-jack
-		wireplumber
+		thunar-volman # file manager, has many plugins, should be run as a deamon
+		gvfs-smb # smb automount support
+		gvfs-mtp # phones automount support
+		thunar-media-tags-plugin
+		ark # archivig tool
+		thunar-archive-plugin
+		tumbler # file thumbnail support
+		ffmpegthumbnailer
+		qpwgraph # pipewire audio graph
+		pavucontrol # pulse audio config tool
+		qjackctl # alsa audio tool
+		playerctl # media player controller CLI
+		flameshot # screenshot tool
+		brightnessctl
 	)
 	# bluetooth
 	depends+=(

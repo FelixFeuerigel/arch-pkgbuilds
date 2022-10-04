@@ -100,6 +100,8 @@ mv $REPO_NAME.db.tar.gz $REPO_NAME.db
 mv $REPO_NAME.files.tar.gz $REPO_NAME.files
 [[ -d $REPO_NAME.files.tar.gz.sig ]] && mv $REPO_NAME.files.tar.gz.sig $REPO_NAME.files.sig
 
+exit 0
+
 echo "################################"
 echo "Uploading the database git repo!"
 echo "################################"

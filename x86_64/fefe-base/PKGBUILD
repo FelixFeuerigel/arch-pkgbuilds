@@ -83,12 +83,12 @@ package() {
 		texinfo
 		which
 	)
-	# for bilding packages
+	# for building packages
 	depends+=( 
 		pacman-contrib
 		devtools
 	)
-	# Coll.
+	# CLI tools
 	depends+=(
 		networkmanager
 		sof-firmware
@@ -99,6 +99,17 @@ package() {
 		htop
 		bottom
 		git
+		smbclient
+	)
+	# audio
+	depends+=(
+		pipewire
+		lib32-pipewire
+		pipewire-alsa
+		pipewire-pulse
+		pipewire-jack
+		lib32-pipewire-jack
+		wireplumber
 	)
 
 	install -Dm 0644 hosts "$pkgdir/etc/hosts"

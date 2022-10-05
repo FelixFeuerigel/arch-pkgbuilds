@@ -49,27 +49,27 @@ package() {
 	)
 	# Desktop base packages
 	depends=(
-		sddm
 		awesome
 		nitrogen
 		dmenu
 		rofi
-		lxappearance
-		xterm
-		alacritty
-		fish
 		picom
-		lxsession
-		polkit
 	)
 	# Base Devel
 	depends+=(
 		keepassxc
 		firefox
 		gedit
+		flameshot # screenshot tool
 	)
 	# system tools
 	depends+=( 
+		sddm
+		xterm
+		alacritty
+		fish
+		lxappearance # a GTK+ theme switcher
+		lxsession # a graphical authentication agent
 		thunar-volman # file manager, has many plugins, should be run as a deamon
 		gvfs-smb # smb automount support
 		gvfs-mtp # phones automount support
@@ -82,8 +82,9 @@ package() {
 		pavucontrol # pulse audio config tool
 		qjackctl # alsa audio tool
 		playerctl # media player controller CLI
-		flameshot # screenshot tool
-		brightnessctl
+		xfce4-settings # Settings manager
+		xfce4-power-manager
+		light # Program to easily change brightness on backlight-controllers
 	)
 	# bluetooth
 	depends+=(
@@ -91,6 +92,7 @@ package() {
 		bluez-utils
 		blueman
 	)
+	#TODO: missing programs for notifications and cups server for printing
 	
 	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
     #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"

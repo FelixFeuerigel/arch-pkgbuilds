@@ -3,6 +3,7 @@ pre_install() {
 	# make backup of files that will be replaced by package files
 	cp /etc/locale.gen /etc/locale.gen.backup
 	cp /etc/pacman.conf /etc/pacman.conf.backup
+	cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
 }
 
 ## arg 1:  the new package version
@@ -33,6 +34,7 @@ post_upgrade() {
 
 	# enable Services for autostart
 	systemctl enable --now NetworkManager
+	systemctl enable --now reflector.timer
 }
 
 ## arg 1:  the old package version
@@ -45,4 +47,5 @@ post_remove() {
 	# restore files from backup that had beed replaced by package files
 	cp /etc/locale.gen.backup /etc/locale.gen
 	cp /etc/pacman.conf.backup /etc/pacman.conf
+	cp /etc/xdg/reflector/reflector.conf.backup /etc/xdg/reflector/reflector.conf
 }

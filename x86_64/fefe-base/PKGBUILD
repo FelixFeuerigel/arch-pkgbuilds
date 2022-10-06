@@ -32,7 +32,8 @@ source=(
 	"vconsole.conf"
 )
 #TODO: add /etc/pacman.conf, /etc/sudoers and x11 keyboard config
-#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing. 
+#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
+#TODO: periodicaly run reflector, but only when connected to the internet
 noextract=()
 b2sums=('326e12a154c24c2c27ca71239e5d5d15acc2d9fef6215f848338808c51d9b04dbe3d464034f2fd9d45c0f26cd0f8d8d8fdf5c296b77d3f5710855f76b00d7e2b'
         'fbb6feff60c7a9336b1f9b687dd3a180c03d895a6c093e4b929138c39d21e31096da24ff2033964899854ee684041c3a75e7e2223b204b245a2b96823ca5c556'
@@ -101,6 +102,8 @@ package() {
 		bottom
 		git
 		smbclient
+		reflector
+		dialog
 	)
 	# audio
 	depends+=(

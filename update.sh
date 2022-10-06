@@ -2,14 +2,13 @@
 
 # Source #
 # GitLab: https://www.gitlab.com/dwt1/dtos-pkgbuild
-# Contributors: Derek Taylor
 
 set -euo pipefail
 echo "$0"
 
-
+DB_NAME="fefe-repo"
 REPO_NAME="arch-repo"
-REPO_URL="https://github.com/FelixFeuerigel/arch-repo.git"
+REPO_URL="https://github.com/FelixFeuerigel/$REPO_NAME.git"
 REPO_DIR="../$REPO_NAME"
 CHROOT="$PWD/chroot-root"
 
@@ -100,7 +99,6 @@ mv $REPO_NAME.db.tar.gz $REPO_NAME.db
 mv $REPO_NAME.files.tar.gz $REPO_NAME.files
 [[ -d $REPO_NAME.files.tar.gz.sig ]] && mv $REPO_NAME.files.tar.gz.sig $REPO_NAME.files.sig
 
-exit 0
 
 echo "################################"
 echo "Uploading the database git repo!"

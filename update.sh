@@ -29,7 +29,7 @@ else
     echo "###########################"
 
     cd $REPO_DIR
-    git pull || echo "==> WANING: Failed to pull from git remote."
+    git pull || ( echo "==> ERROR: Failed to pull from git remote." && exit 1 )
     cd $PKG_DIR
 fi
 
@@ -45,7 +45,11 @@ echo "#####################"
 for x in "${x86_list[@]}"; do
     cd x86_64/"${x}"
     echo -e "\n ### Making Package: ${x} ###"
-    updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
+
+    # update checksums if the folder contains source files
+    if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 5 ]; then
+        updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
+    fi
     makechrootpkg -cur $CHROOT -- -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )
     # makepkg -cf --sign || echo "FAILED TO MAKE PACKAGE: ${x}"  && exit 1
     # find . -mindepth 1 -maxdepth 1 -type d -print0 | xargs -r0 rm -R

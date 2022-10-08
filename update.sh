@@ -47,7 +47,7 @@ for x in "${x86_list[@]}"; do
     echo -e "\n ### Making Package: ${x} ###"
 
     # update checksums if the folder contains source files
-    if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 5 ]; then
+    if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 0 ]; then
         updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
     fi
 

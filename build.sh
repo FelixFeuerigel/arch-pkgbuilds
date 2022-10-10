@@ -35,7 +35,7 @@ for x in "${x86_list[@]}"; do
     fi
 
     # makechrootpkg -cur $CHROOT -- -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )
-    makepkg -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )
+    sudo -u nobody makepkg -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )
     # makepkg -cf --sign || echo "FAILED TO MAKE PACKAGE: ${x}"  && exit 1
     # find . -mindepth 1 -maxdepth 1 -type d -print0 | xargs -r0 rm -R
     

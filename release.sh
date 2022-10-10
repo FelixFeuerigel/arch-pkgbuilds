@@ -9,11 +9,9 @@ echo "$0"
 DB_NAME="fefe-repo"
 REPO_NAME="release"
 REPO_DIR="$PWD/$REPO_NAME"
-CHROOT="$PWD/chroot-root"
-
+CHROOT="$PWD/x86_64/"
 
 PKG_DIR="$(pwd)"
-
 
 ## make chroot evironment if needed
 chgrp -R nobody "$CHROOT"

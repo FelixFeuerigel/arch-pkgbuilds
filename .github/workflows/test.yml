@@ -26,11 +26,12 @@ jobs:
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Download needed packages
+        run: pacman -Syu --noconfirm git pacman-contrib devtools
+
       - run: |
-          pacman -Syu --noconfirm git pacman-contrib devtools
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
       
       - name: Checkout pkgbuilds repo
         uses: actions/checkout@v3

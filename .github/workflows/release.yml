@@ -18,7 +18,7 @@ jobs:
     container:
       image: archlinux:base-devel
     env:
-      GHPAGE_DIR: repo-dir
+      GHPAGE_DIR: ./repo-dir
       BUILD_DIR: ./x86_64/
     steps:
       - name: Download needed packages

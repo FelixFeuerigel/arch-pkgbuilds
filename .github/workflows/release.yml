@@ -1,15 +1,15 @@
 name: deploy
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+  DB_NAME: fefe-repo
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: archlinux:base-devel
-      
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    env:
+      GHPAGE_DIR: $DB_NAME
     steps:
       - name: Download needed packages
         run: pacman -Syu --noconfirm pacman-contrib devtools
@@ -26,14 +26,62 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # Runs a set of commands using the container shell
-      - name: Run a multi-line script
+      - name: make chroot evironment
         run: |
-          chmod +x ./release.sh
-          ./release.sh
-      - name: Deploy
+          chgrp -R nobody "$CHROOT"
+          chmod -R g+ws "$CHROOT"
+          setfacl -m u::rwx,g::rwx "$CHROOT"
+          setfacl -d --set u::rwx,g::rwx,o::- "$CHROOT"
+      
+      - name: build packages in "x86_64" directory
+        run: |
+          PKG_DIR="$(pwd)"
+          readarray -t x86_list <<< "$(find x86_64/ -type f -name PKGBUILD | awk -F / '{print $2}')"
+          echo "\n ### Building ${#x86_list[@]} packages. ### \n"
+          for x in "${x86_list[@]}"; do
+              cd x86_64/"${x}"
+              echo -e "\n ### Making Package: ${x} ###"
+          
+              if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 0 ]; then
+                  sudo -u nobody updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
+              fi
+
+              sudo -u nobody makepkg -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )
+
+              cd $PKG_DIR
+          done
+
+      - name: Moving the packages into one DIR for publishing
+        run: |
+          mkdir $GHPAGE_DIR/
+          mkdir $GHPAGE_DIR/x86_64/
+
+          x86_pkgbuild=$(find x86_64/ -type f -name "*.pkg.tar.zst*")
+
+          for x in ${x86_pkgbuild}; do
+              echo "Moving ${x} to $GHPAGE_DIR/x86_64/"
+              mv "${x}" $GHPAGE_DIR/x86_64/
+          done
+      
+      - name: Build the repo database
+        run: |
+          repo-add -s -n -R $DB_NAME.db.tar.gz *.pkg.tar.zst
+      
+      - name: Remove symlinks
+        run: |
+          rm $DB_NAME.db
+          [[ -d $DB_NAME.db.sig ]] && rm $DB_NAME.db.sig
+          rm $DB_NAME.files
+          [[ -d $DB_NAME.files.sig ]] && rm $DB_NAME.files.sig
+
+          mv $DB_NAME.db.tar.gz $DB_NAME.db
+          [[ -d $DB_NAME.db.tar.gz.sig ]] && mv $DB_NAME.db.tar.gz.sig $DB_NAME-db.sig
+          mv $DB_NAME.files.tar.gz $DB_NAME.files
+          [[ -d $DB_NAME.files.tar.gz.sig ]] && mv $DB_NAME.files.tar.gz.sig $DB_NAME.files.sig
+
+      - name: Deploy database
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./fefe-repo
-          publish_branch: main  # default: gh-pages
+          publish_branch: repo-db

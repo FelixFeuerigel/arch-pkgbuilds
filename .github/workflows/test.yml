@@ -50,4 +50,4 @@ jobs:
           cd arch-pkgbuilds
           chmod +x ./build.sh
           ls -al
-          ./build.sh -m "GitHub actions"
+          ./build.sh

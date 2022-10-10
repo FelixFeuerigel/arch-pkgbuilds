@@ -15,15 +15,6 @@ CHROOT="$PWD/chroot-root"
 
 PKG_DIR="$(pwd)"
 
-while getopts m: flag
-do
-    case "${flag}" in
-        m) GIT_MESSAGE=${OPTARG};;
-    esac
-done
-
-[ -v "$GIT_MESSAGE" ] && echo "ERROR: No commit message" && exit 1
-
 
 ## make chroot evironment if needed
 mkdir -p "$CHROOT"
@@ -64,7 +55,7 @@ for x in ${x86_pkgbuild}; do
 done
 
 git add .
-git commit -m "$COMMIT_MESSAGE" || echo "no PKGBUILD updates to commit"
+git commit -m "Actions: update checksums" || echo "no PKGBUILD updates to commit"
 git push
 
 cd $REPO_DIR/x86_64
@@ -103,7 +94,7 @@ echo "Uploading the database git repo!"
 echo "################################"
 
 git add .
-git commit -m "$COMMIT_MESSAGE"  || echo "no database updates to commit"
+git commit -m "GitHub Actions"  || echo "no database updates to commit"
 git push
 
 echo "#######################################"

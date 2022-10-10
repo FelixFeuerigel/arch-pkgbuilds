@@ -18,7 +18,7 @@ jobs:
     container:
       image: archlinux:base-devel
     env:
-      GHPAGE_DIR: $DB_NAME
+      GHPAGE_DIR: repo-dir
       BUILD_DIR: ./x86_64/
     steps:
       - name: Download needed packages
@@ -72,6 +72,7 @@ jobs:
       
       - name: Remove symlinks
         run: |
+          cd $GHPAGE_DIR/x86_64
           ls -Al
           rm $DB_NAME.db
           [[ -d $DB_NAME.db.sig ]] && rm $DB_NAME.db.sig

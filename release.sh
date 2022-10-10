@@ -42,7 +42,8 @@ echo "################################################"
 echo "Moving the packages to \"$REPO_NAME\"."
 echo "################################################"
 
-[[ -d "$REPO_DIR/x86_64/" ]] || mkdir $REPO_DIR/x86_64/
+mkdir $REPO_DIR/
+mkdir $REPO_DIR/x86_64/
 
 x86_pkgbuild=$(find x86_64/ -type f -name "*.pkg.tar.zst*")
 
@@ -50,7 +51,6 @@ for x in ${x86_pkgbuild}; do
     echo "Moving ${x} to $REPO_DIR/x86_64/"
     mv "${x}" $REPO_DIR/x86_64/
 done
-
 
 cd $REPO_DIR/x86_64
 

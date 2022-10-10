@@ -33,7 +33,7 @@ for x in "${x86_list[@]}"; do
 
     # update checksums if the folder contains source files
     if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 0 ]; then
-        updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
+        sudo -u nobody updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )
     fi
 
     # sudo -u nobody makechrootpkg -cur $CHROOT -- -cf || ( echo "ERROR: FAILED TO MAKE PACKAGE: ${x}" && exit 1 )

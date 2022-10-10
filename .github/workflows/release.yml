@@ -1,4 +1,4 @@
-name: release
+name: deploy
 
 # Controls when the workflow will run
 on:
@@ -13,7 +13,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  release:
+  deploy:
     runs-on: ubuntu-latest
     container:
       image: archlinux:base-devel
@@ -31,11 +31,9 @@ jobs:
         run: |
           chmod +x ./release.sh
           ./release.sh
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: latest
-          tag_name: v0.1.0
-          prerelease: true
-          generate_release_notes: true
-          files: ./release/*
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./fefe-repo
+          publish_branch: main  # default: gh-pages

@@ -7,7 +7,7 @@ set -euo pipefail
 echo "$0"
 
 DB_NAME="fefe-repo"
-REPO_NAME="release"
+REPO_NAME="fefe-repo"
 REPO_DIR="$PWD/$REPO_NAME"
 CHROOT="$PWD/x86_64/"
 

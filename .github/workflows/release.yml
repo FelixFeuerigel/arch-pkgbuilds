@@ -38,7 +38,7 @@ jobs:
         run: |
           PKG_DIR="$(pwd)"
           readarray -t x86_list <<< "$(find x86_64/ -type f -name PKGBUILD | awk -F / '{print $2}')"
-          echo "\n ### Building ${#x86_list[@]} packages. ### \n"
+          echo " ### Building ${#x86_list[@]} packages. ### "
           for x in "${x86_list[@]}"; do
               cd x86_64/"${x}"
               echo -e "\n ### Making Package: ${x} ###"
@@ -66,6 +66,8 @@ jobs:
       
       - name: Build the repo database
         run: |
+          cd $GHPAGE_DIR/x86_64
+          ls -Al
           repo-add -s -n -R $DB_NAME.db.tar.gz *.pkg.tar.zst
       
       - name: Remove symlinks

@@ -27,11 +27,20 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+      
+      - name: Checkout pkgbuilds repo
+        uses: actions/checkout@v3
+
+      - name: Checkout DB repo
+        uses: actions/checkout@v3
+        with:
+          repository: FelixFeuerigel/arch-repo
+          path: ../arch-repo
 
       # Runs a set of commands using the container shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          ./update.sh -m "GitHub actions"
+          ./.github/workflows/build.sh -m "GitHub actions"

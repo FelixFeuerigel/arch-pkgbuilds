@@ -28,6 +28,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - run: |
+          pacman -Syu --noconfirm git pacman-contrib devtools
           git config user.name github-actions
           git config user.email github-actions@github.com
       

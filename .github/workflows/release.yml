@@ -72,6 +72,7 @@ jobs:
       
       - name: Remove symlinks
         run: |
+          ls -Al
           rm $DB_NAME.db
           [[ -d $DB_NAME.db.sig ]] && rm $DB_NAME.db.sig
           rm $DB_NAME.files

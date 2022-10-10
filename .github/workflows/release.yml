@@ -19,6 +19,7 @@ jobs:
       image: archlinux:base-devel
     env:
       GHPAGE_DIR: $DB_NAME
+      BUILD_DIR: ./x86_64/
     steps:
       - name: Download needed packages
         run: pacman -Syu --noconfirm pacman-contrib devtools
@@ -28,10 +29,10 @@ jobs:
 
       - name: make chroot evironment
         run: |
-          chgrp -R nobody "$CHROOT"
-          chmod -R g+ws "$CHROOT"
-          setfacl -m u::rwx,g::rwx "$CHROOT"
-          setfacl -d --set u::rwx,g::rwx,o::- "$CHROOT"
+          chgrp -R nobody "$BUILD_DIR"
+          chmod -R g+ws "$BUILD_DIR"
+          setfacl -m u::rwx,g::rwx "$BUILD_DIR"
+          setfacl -d --set u::rwx,g::rwx,o::- "$BUILD_DIR"
       
       - name: build packages in "x86_64" directory
         run: |

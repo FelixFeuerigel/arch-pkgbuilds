@@ -22,9 +22,7 @@ do
     esac
 done
 
-if [ ! -n "$GIT_MESSAGE" ]; then
-    echo "ERROR: No commit message" && exit 1
-fi
+[ -v "$GIT_MESSAGE" ] && echo "ERROR: No commit message" && exit 1
 
 
 ## make chroot evironment if needed

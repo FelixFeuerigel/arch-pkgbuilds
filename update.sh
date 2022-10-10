@@ -22,7 +22,7 @@ do
     esac
 done
 
-if [ -z $GIT_MESSAGE ] then;
+if [ -z $GIT_MESSAGE ]; then
     echo "Enter a commit mesage: "
     read COMMIT_MESSAGE
 fi

@@ -75,14 +75,17 @@ jobs:
           cd $GHPAGE_DIR/x86_64
           ls -Al
           rm $DB_NAME.db
-          [[ -d $DB_NAME.db.sig ]] && rm $DB_NAME.db.sig
+          ls -Al
+          [ -d $DB_NAME.db.sig ] && rm $DB_NAME.db.sig
+          ls -Al
           rm $DB_NAME.files
-          [[ -d $DB_NAME.files.sig ]] && rm $DB_NAME.files.sig
+          ls -Al
+          [ -d $DB_NAME.files.sig ] && rm $DB_NAME.files.sig
 
           mv $DB_NAME.db.tar.gz $DB_NAME.db
-          [[ -d $DB_NAME.db.tar.gz.sig ]] && mv $DB_NAME.db.tar.gz.sig $DB_NAME-db.sig
+          [ -d $DB_NAME.db.tar.gz.sig ] && mv $DB_NAME.db.tar.gz.sig $DB_NAME-db.sig
           mv $DB_NAME.files.tar.gz $DB_NAME.files
-          [[ -d $DB_NAME.files.tar.gz.sig ]] && mv $DB_NAME.files.tar.gz.sig $DB_NAME.files.sig
+          [ -d $DB_NAME.files.tar.gz.sig ] && mv $DB_NAME.files.tar.gz.sig $DB_NAME.files.sig
 
       - name: Deploy database
         uses: peaceiris/actions-gh-pages@v3

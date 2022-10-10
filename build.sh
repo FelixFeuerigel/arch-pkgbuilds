@@ -22,7 +22,7 @@ do
     esac
 done
 
-if [ -z $GIT_MESSAGE ]; then
+if [ ! -n $GIT_MESSAGE ]; then
     echo "ERROR: No commit message" && exit 1
 fi
 

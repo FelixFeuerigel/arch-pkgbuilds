@@ -10,15 +10,15 @@ DB_NAME="fefe-repo"
 REPO_NAME="arch-repo"
 REPO_URL="https://github.com/FelixFeuerigel/$REPO_NAME.git"
 REPO_DIR="../$REPO_NAME"
-CHROOT="$PWD/x86_64"
+CHROOT="$PWD/x86_64/"
 
 
 PKG_DIR="$(pwd)"
 
 
 ## make chroot evironment if needed
-chgrp nobody "$CHROOT"
-chmod g+ws "$CHROOT"
+chgrp -R nobody "$CHROOT"
+chmod -R g+ws "$CHROOT"
 setfacl -m u::rwx,g::rwx "$CHROOT"
 setfacl -d --set u::rwx,g::rwx,o::- "$CHROOT"
 

@@ -15,8 +15,17 @@ CHROOT="$PWD/chroot-root"
 
 PKG_DIR="$(pwd)"
 
-echo "Enter a commit mesage: "
-read COMMIT_MESSAGE
+while getopts m: flag
+do
+    case "${flag}" in
+        m) GIT_MESSAGE=${OPTARG};;
+    esac
+done
+
+if [ -z $GIT_MESSAGE ] then;
+    echo "Enter a commit mesage: "
+    read COMMIT_MESSAGE
+fi
 
 if [ ! -d "$REPO_DIR" ]; then
     echo "###########################"

@@ -23,7 +23,7 @@ replaces=()
 
 backup=()
 options=()
-install= ()
+#install=fefe-awsome.install
 changelog=
 source=(
 

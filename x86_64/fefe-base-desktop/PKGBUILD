@@ -1,0 +1,100 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-awsome
+pkgdesc="fefe base meta package for desktop computers"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+
+pkgver=0.0.1
+pkgrel=1
+epoch=0
+groups=()
+
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+
+backup=()
+options=()
+install=fefe-base-desktop.install
+changelog=
+source=(
+
+)
+noextract=()
+b2sums=(
+
+)
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	depends=(
+		fefe-base
+	)
+	# user programms
+	depends+=(
+		firefox
+		gedit
+		keepassxc
+		flameshot # screenshot tool
+	)
+	# file manager
+	depends+=(
+		thunar # file manager, has many plugins, should be run as a deamon
+		thunar-volman # Automatic management of removeable devices in Thunar
+		gvfs-smb # smb automount support
+		gvfs-mtp # phones automount support
+		thunar-media-tags-plugin # view/edit ID3/OGG tags
+		thunar-archive-plugin
+		ark # Archiving Tool
+		tumbler # file thumbnail support
+		ffmpegthumbnailer
+	)
+	# audio GUI
+	depends+=(
+		qpwgraph # pipewire audio graph
+		pavucontrol # pulse audio config tool
+		qjackctl # alsa audio tool
+	)
+	# settigs programms
+	depends+=(
+		xfce4-settings # Settings manager
+		xfce4-power-manager
+		lxappearance # a GTK+ theme switcher
+	)
+	# terminal
+	depends+=(
+		xterm
+		alacritty
+		fish
+	)
+	# background system programms
+	depends+=(
+		lxsession # a graphical authentication agent
+	)
+	# login manager
+	depends+=( 
+		sddm
+	)
+	#TODO: missing programs for notifications and cups server for printing
+	
+	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
+    #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
+	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
+}

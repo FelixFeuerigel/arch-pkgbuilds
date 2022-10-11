@@ -1,7 +1,7 @@
 # Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
 
 pkgname=fefe-awsome
-pkgdesc="Base system configuration for fefe systems"
+pkgdesc="Awsome meta package for fefe systems"
 
 url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
 license=("unknown")
@@ -23,7 +23,7 @@ replaces=()
 
 backup=()
 options=()
-install=fefe-awesome.install
+install= ()
 changelog=
 source=(
 
@@ -45,7 +45,7 @@ validpgpkeys=()
 
 package() {
 	depends=(
-		fefe-base
+		fefe-base-desktop
 	)
 	# Desktop base packages
 	depends=(
@@ -55,44 +55,11 @@ package() {
 		rofi
 		picom
 	)
-	# Base Devel
-	depends+=(
-		keepassxc
-		firefox
-		gedit
-		flameshot # screenshot tool
-	)
-	# system tools
+	# CLI tools
 	depends+=( 
-		sddm
-		xterm
-		alacritty
-		fish
-		lxappearance # a GTK+ theme switcher
-		lxsession # a graphical authentication agent
-		thunar-volman # file manager, has many plugins, should be run as a deamon
-		gvfs-smb # smb automount support
-		gvfs-mtp # phones automount support
-		thunar-media-tags-plugin
-		ark # archivig tool
-		thunar-archive-plugin
-		tumbler # file thumbnail support
-		ffmpegthumbnailer
-		qpwgraph # pipewire audio graph
-		pavucontrol # pulse audio config tool
-		qjackctl # alsa audio tool
 		playerctl # media player controller CLI
-		xfce4-settings # Settings manager
-		xfce4-power-manager
 		light # Program to easily change brightness on backlight-controllers
 	)
-	# bluetooth
-	depends+=(
-		bluez
-		bluez-utils
-		blueman
-	)
-	#TODO: missing programs for notifications and cups server for printing
 	
 	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
     #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"

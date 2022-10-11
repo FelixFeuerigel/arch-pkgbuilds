@@ -5,5 +5,4 @@ post_install() {
 post_upgrade() {
 	# enable Services for autostart
     systemctl enable --now sddm.service
-    systemctl enable --now bluetooth.service
 }

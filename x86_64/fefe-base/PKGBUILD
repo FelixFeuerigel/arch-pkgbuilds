@@ -117,6 +117,12 @@ package() {
 		lib32-pipewire-jack
 		wireplumber
 	)
+	# bluetooth
+	depends+=(
+		bluez
+		bluez-utils
+		blueman
+	)
 
 	install -Dm 0644 hosts "$pkgdir/etc/hosts"
 	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"

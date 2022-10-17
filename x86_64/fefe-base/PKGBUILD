@@ -105,13 +105,13 @@ package() {
 	)
 	# audio
 	depends+=(
+		wireplumber
 		pipewire
 		lib32-pipewire
 		pipewire-alsa
 		pipewire-pulse
 		pipewire-jack
 		lib32-pipewire-jack
-		wireplumber
 	)
 	# bluetooth
 	depends+=(

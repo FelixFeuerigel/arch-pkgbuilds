@@ -1,9 +1,9 @@
 ## arg 1:  the new package version
 pre_install() {
 	# make backup of files that will be replaced by package files
-	cp /etc/locale.gen /etc/locale.gen.backup
-	cp /etc/pacman.conf /etc/pacman.conf.backup
-	cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
+	mv /etc/locale.gen /etc/locale.gen.backup
+	mv /etc/pacman.conf /etc/pacman.conf.backup
+	mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
 }
 
 ## arg 1:  the new package version
@@ -46,7 +46,7 @@ post_upgrade() {
 ## arg 1:  the old package version
 post_remove() {
 	# restore files from backup that had beed replaced by package files
-	cp /etc/locale.gen.backup /etc/locale.gen
-	cp /etc/pacman.conf.backup /etc/pacman.conf
-	cp /etc/xdg/reflector/reflector.conf.backup /etc/xdg/reflector/reflector.conf
+	mv /etc/locale.gen.backup /etc/locale.gen
+	mv /etc/pacman.conf.backup /etc/pacman.conf
+	mv /etc/xdg/reflector/reflector.conf.backup /etc/xdg/reflector/reflector.conf
 }

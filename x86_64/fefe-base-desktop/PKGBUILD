@@ -93,8 +93,4 @@ package() {
 		sddm
 	)
 	#TODO: missing programs for notifications and cups server for printing
-	
-	#install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
-    #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
-	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

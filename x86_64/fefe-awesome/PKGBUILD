@@ -1,7 +1,7 @@
 # Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
 
-pkgname=fefe-awsome
-pkgdesc="Awsome meta package for fefe systems"
+pkgname=fefe-awesome
+pkgdesc="Awesome meta package for fefe systems"
 
 url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
 license=("unknown")
@@ -23,7 +23,7 @@ replaces=()
 
 backup=()
 options=()
-#install=fefe-awsome.install
+#install=fefe-awesome.install
 changelog=
 source=(
 

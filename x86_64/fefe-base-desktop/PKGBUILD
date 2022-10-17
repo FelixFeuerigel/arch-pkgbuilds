@@ -1,6 +1,6 @@
 # Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
 
-pkgname=fefe-awsome
+pkgname=fefe-base-desktop
 pkgdesc="fefe base meta package for desktop computers"
 
 url="https://github.com/FelixFeuerigel/arch-pkgbuilds"

@@ -1,9 +1,9 @@
 ## arg 1:  the new package version
 pre_install() {
 	# make backup of files that will be replaced by package files
-	mv /etc/locale.gen /etc/locale.gen.backup
-	mv /etc/pacman.conf /etc/pacman.conf.backup
-	mv /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
+	cp /etc/locale.gen /etc/locale.gen.backup
+	cp /etc/pacman.conf /etc/pacman.conf.backup
+	cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
 }
 
 ## arg 1:  the new package version
@@ -20,8 +20,17 @@ post_install() {
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
+	## rename package files
+	mv -f /etc/hosts.fefe /etc/hosts
+	mv -f /etc/locale.conf.fefe /etc/locale.conf
+	mv -f /etc/locale.gen.fefe /etc/locale.gen
+	mv -f /etc/xdg/reflector/reflector.conf.fefe /etc/xdg/reflector/reflector.conf
+	mv -f /etc/pacman.conf.fefe /etc/pacman.conf
+	mv -f /etc/vconsole.conf.fefe /etc/vconsole.conf
+
 	# set timezone
 	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
 	# input hostname in hosts file
 	if [ -n "$(cat /mnt/etc/hostname)" ]; then
 		sed -i 's/^##hostname_gets_auto_replaced##/$(cat /mnt/etc/hostname)/' /mnt/etc/hosts
@@ -29,10 +38,11 @@ post_upgrade() {
 		echo "Failed to set hostname in \"/mnt/etc/hosts\":"
 		echo "WARNING: \"/mnt/etc/hostname\" is empty"
 	fi
+
 	# generate locales in locale.gen
 	locale-gen
 
-	# enable Services for autostart
+	## enable Services for autostart
 	systemctl enable --now NetworkManager
 	systemctl enable --now reflector.timer # periodicaly update mirrorlist
     systemctl enable --now bluetooth.service

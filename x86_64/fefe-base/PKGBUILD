@@ -120,12 +120,12 @@ package() {
 		blueman
 	)
 
-	install -Dm 0644 hosts "$pkgdir/etc/hosts"
-	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf"
-	install -Dm 0644 locale.gen "$pkgdir/etc/locale.gen"
-	install -Dm 0644 reflector.conf "$pkgdir/etc/xdg/reflector/reflector.conf"
-	install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf"
-	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf"
+	install -Dm 0644 hosts "$pkgdir/etc/hosts.fefe"
+	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf.fefe"
+	install -Dm 0644 locale.gen "$pkgdir/etc/locale.gen.fefe"
+	install -Dm 0644 reflector.conf "$pkgdir/etc/xdg/reflector/reflector.conf.fefe"
+	install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf.fefe"
+	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf.fefe"
     #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
 	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

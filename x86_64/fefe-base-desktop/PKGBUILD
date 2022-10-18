@@ -10,7 +10,7 @@ groups=()
 
 pkgver=0.0.1
 pkgver() {
-	date +%Y%m%d
+	date +%Y%m%d.%H%M.%S
 }
 pkgrel=1
 epoch=0

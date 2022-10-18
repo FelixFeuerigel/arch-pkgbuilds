@@ -51,7 +51,7 @@ package() {
 		fefe-base-desktop
 	)
 	# Desktop base packages
-	depends=(
+	depends+=(
 		awesome
 		nitrogen
 		dmenu

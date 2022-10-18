@@ -26,7 +26,7 @@ options=()
 install=fefe-base-desktop.install
 changelog=
 source=(
-
+	"01-fefe-keyboard.conf"
 )
 noextract=()
 b2sums=(
@@ -93,4 +93,6 @@ package() {
 		sddm
 	)
 	#TODO: missing programs for notifications and cups server for printing
+
+	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/01-fefe-keyboard.conf"
 }

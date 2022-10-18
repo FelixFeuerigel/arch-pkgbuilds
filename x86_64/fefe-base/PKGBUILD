@@ -32,8 +32,8 @@ source=(
 	"pacman.conf"
 	"reflector.conf"
 	"vconsole.conf"
+	"00-fefe-sudo.conf"
 )
-#TODO: add /etc/sudoers and x11 keyboard config
 #TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
 noextract=()
 b2sums=()
@@ -126,6 +126,6 @@ package() {
 	install -Dm 0644 reflector.conf "$pkgdir/etc/xdg/reflector/reflector.conf.fefe"
 	install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf.fefe"
 	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf.fefe"
-    #install -Dm 0640 sudoers.wheel "$pkgdir/etc/sudoers"
+    install -Dm 0640 00-fefe-sudo.conf "$pkgdir/etc/sudoers.d/00-fefe-sudo.conf"
 	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

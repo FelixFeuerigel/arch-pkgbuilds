@@ -23,10 +23,10 @@ replaces=()
 
 backup=()
 options=()
-#install=fefe-awesome.install
+install=fefe-awesome.install
 changelog=
 source=(
-
+	"rc.lua"
 )
 noextract=()
 b2sums=(
@@ -60,4 +60,6 @@ package() {
 		playerctl # media player controller CLI
 		light # Program to easily change brightness on backlight-controllers
 	)
+
+	install -Dm 0644 rc.lua "$pkgdir/etc/xdg/awesome/rc.lua.fefe"
 }

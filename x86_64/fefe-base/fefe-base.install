@@ -32,11 +32,11 @@ post_upgrade() {
 	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 	# input hostname in hosts file
-	if [ -n "$(cat /mnt/etc/hostname)" ]; then
-		sed -i 's/^##hostname_gets_auto_replaced##/$(cat /mnt/etc/hostname)/' /mnt/etc/hosts
+	if [ -n "$(cat /etc/hostname)" ]; then
+		sed -i 's/^##hostname_gets_auto_replaced##/$(cat /etc/hostname)/' /etc/hosts
 	else
-		echo "Failed to set hostname in \"/mnt/etc/hosts\":"
-		echo "WARNING: \"/mnt/etc/hostname\" is empty"
+		echo "Failed to set hostname in \"/etc/hosts\":"
+		echo "WARNING: \"/etc/hostname\" is empty"
 	fi
 
 	# generate locales in locale.gen

@@ -9,6 +9,11 @@ arch=("any")
 groups=()
 
 pkgver=0.0.1
+pkgver() {
+	# printf "r%s" "$(git log --source -n 1 --pretty='format:%ct.%h' -- PKGBUILD)"
+	# printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	date +%Y%m%d
+}
 pkgrel=1
 epoch=0
 groups=()

@@ -27,6 +27,7 @@ install=fefe-base-desktop.install
 changelog=
 source=(
 	"01-fefe-keyboard.conf"
+	"alacritty.yml"
 )
 noextract=()
 b2sums=()
@@ -89,4 +90,5 @@ package() {
 	#TODO: missing programs for notifications and cups server for printing
 
 	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/01-fefe-keyboard.conf"
+	install -Dm 0644 alacritty.yml "$pkgdir/etc/fefe/.config/alacritty/alacritty.yml"
 }

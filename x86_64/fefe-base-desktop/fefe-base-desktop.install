@@ -5,4 +5,7 @@ post_install() {
 post_upgrade() {
 	# enable Services for autostart
     systemctl enable --now sddm.service
+
+	# move config files to HOME dictonary
+	cp -f /etc/fefe/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 }

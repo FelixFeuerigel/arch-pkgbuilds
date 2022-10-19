@@ -6,7 +6,12 @@ post_upgrade() {
 	# enable Services for autostart
     systemctl enable --now sddm.service
 
-	# move config files to HOME dictonary
+	# move config files to all HOME dictonarys
 	## cp /etc/fefe/.config/alacritty/alacritty.yml home/*all_home_dirs*/.config/alacritty/alacritty.yml
-	echo /home/*/.config/alacritty/alacritty.yml | xargs -n 1 cp /etc/fefe/.config/alacritty/alacritty.yml 
+	readarray -t home_dirs <<< "$(find /home/* -maxdepth 0 -type d)"
+	for x in "${home_dirs[@]}"; do
+		echo "copying alacritty.yml to $x/.config/alacritty/alacritty.yml"
+		[[ -d $x/.config/alacritty ]] || mkdir $x/.config/alacritty
+		cp /etc/fefe/.config/alacritty/alacritty.yml $x/.config/alacritty/alacritty.yml
+	done
 }

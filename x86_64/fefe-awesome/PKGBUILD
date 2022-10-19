@@ -7,7 +7,6 @@ url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
 license=("unknown")
 arch=("any")
 groups=()
-
 pkgver=0.0.1
 pkgver() {
 	date +%Y%m%d.%H%M.%S
@@ -15,7 +14,6 @@ pkgver() {
 pkgrel=1
 epoch=0
 groups=()
-
 depends=()
 makedepends=()
 checkdepends=()
@@ -23,7 +21,6 @@ optdepends=()
 provides=()
 conflicts=()
 replaces=()
-
 backup=()
 options=()
 install=fefe-awesome.install
@@ -32,9 +29,7 @@ source=(
 	"rc.lua"
 )
 noextract=()
-b2sums=(
-
-)
+b2sums=()
 validpgpkeys=()
 
 #prepare() {

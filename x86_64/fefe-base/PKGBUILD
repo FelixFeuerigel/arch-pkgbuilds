@@ -7,7 +7,6 @@ url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
 license=("unknown")
 arch=("any")
 groups=()
-
 pkgver=0.0.1
 pkgver() {
 	# printf "r%s" "$(git log --source -n 1 --pretty='format:%ct.%h' -- PKGBUILD)"
@@ -17,7 +16,6 @@ pkgver() {
 pkgrel=1
 epoch=0
 groups=()
-
 depends=()
 makedepends=()
 checkdepends=()
@@ -25,7 +23,6 @@ optdepends=()
 provides=()
 conflicts=()
 replaces=()
-
 backup=()
 options=()
 install=fefe-base.install
@@ -39,7 +36,6 @@ source=(
 	"vconsole.conf"
 	"00-fefe-sudo.conf"
 )
-#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
 noextract=()
 b2sums=()
 validpgpkeys=()
@@ -52,6 +48,8 @@ validpgpkeys=()
 
 #check() {
 #}
+
+#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
 
 package() {
 	# Base packages

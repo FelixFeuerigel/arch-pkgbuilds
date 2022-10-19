@@ -87,10 +87,6 @@ package() {
 		alacritty
 		fish
 	)
-	# background system programms
-	depends+=(
-		lxsession # a graphical authentication agent
-	)
 	# login manager
 	depends+=( 
 		sddm

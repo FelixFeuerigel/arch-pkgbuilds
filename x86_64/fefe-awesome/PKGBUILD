@@ -63,6 +63,10 @@ package() {
 		playerctl # media player controller CLI
 		light # Program to easily change brightness on backlight-controllers
 	)
+	# background system programms
+	depends+=(
+		lxsession # a graphical authentication agent
+	)
 
 	install -Dm 0644 rc.lua "$pkgdir/etc/xdg/awesome/rc.lua.fefe"
 }

@@ -1,0 +1,103 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-xfce
+pkgdesc="Xfce meta package for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+
+pkgver=0.0.1
+pkgver() {
+	date +%Y%m%d.%H%M.%S
+}
+pkgrel=1
+epoch=0
+groups=()
+
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+
+backup=()
+options=()
+install=fefe-xfce.install
+changelog=
+source=()
+noextract=()
+b2sums=(
+
+)
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	depends=(
+		fefe-base-desktop
+	)
+	# Xfce group packages
+	depends+=(
+		exo
+		garcon
+		thunar
+		thunar-volman
+		tumbler
+		xfce4-appfinder
+		xfce4-panel
+		xfce4-power-manager
+		xfce4-session
+		xfce4-settings
+		xfce4-terminal
+		xfconf
+		xfdesktop
+		xfwm4
+		xfwm4-themes
+	)
+	# Xfce goodies
+	depends+=(
+	 	thunar-archive-plugin
+		thunar-media-tags-plugin
+		xfce4-notifyd
+		xfce4-dict
+		xfce4-battery-plugin
+		xfce4-clipman-plugin
+		xfce4-cpufreq-plugin
+		xfce4-cpugraph-plugin
+		xfce4-datetime-plugin
+		xfce4-diskperf-plugin
+		xfce4-eyes-plugin
+		xfce4-fsguard-plugin
+		xfce4-genmon-plugin
+		xfce4-mailwatch-plugin
+		xfce4-mount-plugin
+		xfce4-mpc-plugin
+		xfce4-netload-plugin
+		xfce4-notes-plugin
+		xfce4-screensaver
+		xfce4-screenshooter
+		xfce4-sensors-plugin
+		xfce4-smartbookmark-plugin
+		xfce4-systemload-plugin
+		xfce4-taskmanager
+		xfce4-time-out-plugin
+		xfce4-timer-plugin
+		xfce4-verve-plugin
+		xfce4-wavelan-plugin
+		xfce4-weather-plugin
+		xfce4-whiskermenu-plugin
+		xfce4-xkb-plugin
+	)
+}

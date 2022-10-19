@@ -299,16 +299,17 @@ globalkeys = gears.table.join(
               {description = "select previous", group = "layout"}),
 
     awful.key({ modkey, "Control" }, "n",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                    c:emit_signal(
-                        "request::activate", "key.unminimize", {raise = true}
-                    )
-                  end
-              end,
-              {description = "restore minimized", group = "client"}),
+        function ()
+            local c = awful.client.restore()
+            -- Focus restored client
+            if c then
+                c:emit_signal(
+                    "request::activate", "key.unminimize", {raise = true}
+                )
+            end
+        end,
+        {description = "restore minimized", group = "client"}
+    ),
 
     -- Prompt
     awful.key({ modkey }, "r",
@@ -319,11 +320,11 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey }, "space",
         function ()
-            awful.spawn(rofi -show drun)
+            awful.util.spawn(rofi -show drun)
         end,
         {description = "Rofi Launcer", group = "launcher"}
     ),
-    awful.key( { modkey }, "x",
+    awful.key({ modkey }, "x",
         function ()
             awful.prompt.run {
                 prompt       = "Run Lua code: ",

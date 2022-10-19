@@ -33,7 +33,7 @@ post_upgrade() {
 
 	# input hostname in hosts file
 	if [ -n "$(cat /etc/hostname)" ]; then
-		sed -i 's/^##hostname_gets_auto_replaced##/$(cat /etc/hostname)/' /etc/hosts
+		sed -i "s/^##hostname_gets_auto_replaced##/$(cat /etc/hostname)/" /etc/hosts
 	else
 		echo "Failed to set hostname in \"/etc/hosts\":"
 		echo "WARNING: \"/etc/hostname\" is empty"

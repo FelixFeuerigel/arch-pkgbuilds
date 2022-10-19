@@ -116,7 +116,7 @@ local taglist_buttons = gears.table.join(
                                               if client.focus then
                                                   client.focus:move_to_tag(t)
                                               end
-                                          end),wallpaper
+                                          end),
                     awful.button({ }, 3, awful.tag.viewtoggle),
                     awful.button({ modkey }, 3, function(t)
                                               if client.focus then
@@ -317,7 +317,7 @@ globalkeys = gears.table.join(
         end,
         {description = "run prompt", group = "launcher"}
     ),
-    awful.key( { modkey }, "space",
+    awful.key({ modkey }, "space",
         function ()
             awful.spawn(rofi -show drun)
         end,
@@ -335,7 +335,7 @@ globalkeys = gears.table.join(
         {description = "lua execute prompt", group = "awesome"}
     ),
     -- Menubar
-    awful.key( { modkey }, "p",
+    awful.key({ modkey }, "p",
         function()
             menubar.show()
         end,
@@ -351,7 +351,7 @@ clientkeys = gears.table.join(
         end,
         {description = "toggle fullscreen", group = "client"}
     ),
-    awful.key( { modkey }, "q",
+    awful.key({ modkey }, "q",
         function (c)
             c:kill()
         end,

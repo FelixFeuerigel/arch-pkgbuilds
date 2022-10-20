@@ -20,7 +20,6 @@ post_install() {
 post_upgrade() {
 	## rename package files
 	mv -f /etc/xdg/awesome/rc.lua.fefe /etc/xdg/awesome/rc.lua
-	# mv -f /etc/xdg/awesome/rc.lua.fefe $HOME/.config/awesome/rc.lua
 }
 
 ## arg 1:  the old package version

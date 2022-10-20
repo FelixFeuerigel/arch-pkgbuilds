@@ -48,10 +48,16 @@ package() {
 	)
 	# user programms
 	depends+=(
+		discord
 		firefox
 		gedit
 		keepassxc
 		flameshot # screenshot tool
+	)
+	# gaming softwawre
+	depends+=(
+		steam
+		ttf-liberation # Arial font alternative
 	)
 	# file manager
 	depends+=(

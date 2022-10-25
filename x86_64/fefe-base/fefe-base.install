@@ -1,4 +1,3 @@
-## arg 1:  the new package version
 pre_install() {
 	# make backup of files that will be replaced by package files
 	cp /etc/locale.gen /etc/locale.gen.backup
@@ -6,19 +5,17 @@ pre_install() {
 	cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
 }
 
-## arg 1:  the new package version
 post_install() {
+	# set timezone
+	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+
 	post_upgrade
 }
 
-## arg 1:  the new package version
-## arg 2:  the old package version
 #pre_upgrade() {
 	# do something here
 #}
 
-## arg 1:  the new package version
-## arg 2:  the old package version
 post_upgrade() {
 	## rename package files
 	mv -f /etc/hosts.fefe /etc/hosts
@@ -28,10 +25,7 @@ post_upgrade() {
 	mv -f /etc/pacman.conf.fefe /etc/pacman.conf
 	mv -f /etc/vconsole.conf.fefe /etc/vconsole.conf
 
-	# set timezone
-	ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
-
-	# input hostname in hosts file
+	## input hostname in hosts file
 	if [ -n "$(cat /etc/hostname)" ]; then
 		sed -i "s/^##hostname_gets_auto_replaced##/$(cat /etc/hostname)/" /etc/hosts
 	else
@@ -39,8 +33,11 @@ post_upgrade() {
 		echo "WARNING: \"/etc/hostname\" is empty"
 	fi
 
-	# generate locales in locale.gen
+	## generate locales in locale.gen
+	# TODO: use pacman hook
 	locale-gen
+
+	# TODO: add packman hook to clear pacman package cache (keep last 3 versions for installed packages and 1 version for uninstalled packages)
 
 	## enable Services for autostart
 	systemctl enable --now NetworkManager
@@ -48,14 +45,12 @@ post_upgrade() {
     systemctl enable --now bluetooth.service
 }
 
-## arg 1:  the old package version
 #pre_remove() {
 	# do something here
 #}
 
-## arg 1:  the old package version
 post_remove() {
-	# restore files from backup that had beed replaced by package files
+	## restore files from backup that had beed replaced by package files
 	mv /etc/locale.gen.backup /etc/locale.gen
 	mv /etc/pacman.conf.backup /etc/pacman.conf
 	mv /etc/xdg/reflector/reflector.conf.backup /etc/xdg/reflector/reflector.conf

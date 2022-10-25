@@ -59,6 +59,11 @@ package() {
 		steam
 		ttf-liberation # Arial font alternative
 	)
+	# KDE connect
+	depends+=(
+		sshfs
+		kdeconnect
+	)
 	# file manager
 	depends+=(
 		thunar # file manager, has many plugins, should be run as a deamon

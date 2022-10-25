@@ -105,6 +105,6 @@ package() {
 	)
 	#TODO: missing programs for notifications
 
-	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/01-fefe-keyboard.conf"
+	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/01-fefe-keyboard.conf"
 	install -Dm 0644 alacritty.yml "$pkgdir/etc/fefe/.config/alacritty/alacritty.yml"
 }

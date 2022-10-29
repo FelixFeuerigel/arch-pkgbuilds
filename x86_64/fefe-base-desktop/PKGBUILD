@@ -59,6 +59,11 @@ package() {
 		steam
 		ttf-liberation # Arial font alternative
 	)
+	# KDE connect
+	depends+=(
+		sshfs
+		kdeconnect
+	)
 	# file manager
 	depends+=(
 		thunar # file manager, has many plugins, should be run as a deamon
@@ -93,8 +98,13 @@ package() {
 	depends+=( 
 		sddm
 	)
-	#TODO: missing programs for notifications and cups server for printing
+	# printing
+	depends+=(
+		cups
+		system-config-printer
+	)
+	#TODO: missing programs for notifications
 
-	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/01-fefe-keyboard.conf"
+	install -Dm 0644 01-fefe-keyboard.conf "$pkgdir/etc/X11/xorg.conf.d/01-fefe-keyboard.conf"
 	install -Dm 0644 alacritty.yml "$pkgdir/etc/fefe/.config/alacritty/alacritty.yml"
 }

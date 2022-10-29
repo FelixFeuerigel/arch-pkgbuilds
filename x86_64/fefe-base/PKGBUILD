@@ -103,6 +103,7 @@ package() {
 		bottom
 		git
 		smbclient
+		samba
 		reflector
 		dialog
 	)

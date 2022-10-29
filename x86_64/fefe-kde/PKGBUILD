@@ -47,4 +47,8 @@ package() {
 	depends+=(
 		plasma-meta
 	)
+	# printing
+	depends+=(
+		print-manager
+	)
 }

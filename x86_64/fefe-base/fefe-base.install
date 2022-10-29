@@ -45,7 +45,8 @@ post_upgrade() {
 	## enable Services for autostart
 	systemctl enable --now NetworkManager
 	systemctl enable --now reflector.timer # periodicaly update mirrorlist
-    systemctl enable --now bluetooth.service
+	systemctl enable --now bluetooth.service
+	systemctl enable --now sshd.service
 }
 
 ## arg 1:  the old package version

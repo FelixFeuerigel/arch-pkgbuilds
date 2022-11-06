@@ -34,7 +34,7 @@ source=(
 	"pacman.conf"
 	"reflector.conf"
 	"vconsole.conf"
-	"00-fefe-sudo.conf"
+	"00-fefe-sudo"
 )
 noextract=()
 b2sums=()
@@ -134,6 +134,6 @@ package() {
 	install -Dm 0644 reflector.conf "$pkgdir/etc/xdg/reflector/reflector.conf.fefe"
 	install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf.fefe"
 	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf.fefe"
-	install -Dm 0440 00-fefe-sudo.conf "$pkgdir/etc/sudoers.d/00-fefe-sudo.conf"
+	install -Dm 0440 00-fefe-sudo "$pkgdir/etc/sudoers.d/00-fefe-sudo"
 	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

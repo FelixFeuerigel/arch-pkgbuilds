@@ -106,7 +106,8 @@ package() {
 		samba
 		reflector
 		dialog
-	)
+		rclone
+	) #TODO: add systemd service for rclone
 	# audio
 	depends+=(
 		wireplumber
@@ -123,9 +124,10 @@ package() {
 		bluez-utils
 		blueman
 	)
-	# ssh
+	# remote shell
 	depends+=(
 		openssh
+		mosh
 	)	#TODO: harden ssh and add sshguard
 
 	install -Dm 0644 hosts "$pkgdir/etc/hosts.fefe"

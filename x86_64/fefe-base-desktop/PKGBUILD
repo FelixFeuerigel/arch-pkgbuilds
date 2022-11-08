@@ -92,7 +92,6 @@ package() {
 	depends+=(
 		xterm
 		alacritty
-		fish
 	)
 	# login manager
 	depends+=( 

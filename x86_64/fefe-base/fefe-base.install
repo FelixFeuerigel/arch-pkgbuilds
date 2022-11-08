@@ -1,9 +1,4 @@
-pre_install() {
-	# make backup of files that will be replaced by package files
-	cp /etc/locale.gen /etc/locale.gen.backup
-	cp /etc/pacman.conf /etc/pacman.conf.backup
-	cp /etc/xdg/reflector/reflector.conf /etc/xdg/reflector/reflector.conf.backup
-}
+#pre_install() {}
 
 post_install() {
 	# set timezone
@@ -23,6 +18,7 @@ post_upgrade() {
 	mv -f /etc/locale.gen.fefe /etc/locale.gen
 	mv -f /etc/xdg/reflector/reflector.conf.fefe /etc/xdg/reflector/reflector.conf
 	mv -f /etc/pacman.conf.fefe /etc/pacman.conf
+	mv -f /etc/sshd_config.fefe /etc/sshd_config
 	mv -f /etc/vconsole.conf.fefe /etc/vconsole.conf
 
 	## input hostname in hosts file
@@ -50,9 +46,4 @@ post_upgrade() {
 	# do something here
 #}
 
-post_remove() {
-	## restore files from backup that had beed replaced by package files
-	mv /etc/locale.gen.backup /etc/locale.gen
-	mv /etc/pacman.conf.backup /etc/pacman.conf
-	mv /etc/xdg/reflector/reflector.conf.backup /etc/xdg/reflector/reflector.conf
-}
+#post_remove() {}

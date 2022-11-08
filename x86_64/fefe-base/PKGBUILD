@@ -35,6 +35,8 @@ source=(
 	"reflector.conf"
 	"vconsole.conf"
 	"00-fefe-sudo"
+	"sshd_config"
+	"gitconfig"
 )
 noextract=()
 b2sums=()
@@ -91,25 +93,21 @@ package() {
 		pacman-contrib
 		devtools
 	)
-	# CLI tools
+	# system tools
 	depends+=(
 		networkmanager
 		sof-firmware
 		man-db
 		man-pages
 		nano
-		neovim
-		htop
-		bottom
 		git
 		bash-completion
-		jdk17-openjdk
 		smbclient
 		samba
 		reflector
 		dialog
 		rclone
-	) #TODO: add systemd service for rclone, make fefe-base-devel, include /etc/gitconfig
+	) #TODO: add systemd service for rclone, include /etc/gitconfig
 	# audio
 	depends+=(
 		wireplumber
@@ -130,7 +128,16 @@ package() {
 	depends+=(
 		openssh
 		mosh
-	)	#TODO: harden ssh and add sshguard
+	)	#TODO: harden ssh and add sshguard & firewald
+	# devel / code
+	depends+=(
+		neovim
+		fish
+		htop
+		bottom
+		tmux
+		jdk17-openjdk
+	)
 
 	install -Dm 0644 hosts "$pkgdir/etc/hosts.fefe"
 	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf.fefe"
@@ -138,6 +145,8 @@ package() {
 	install -Dm 0644 reflector.conf "$pkgdir/etc/xdg/reflector/reflector.conf.fefe"
 	install -Dm 0644 pacman.conf "$pkgdir/etc/pacman.conf.fefe"
 	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf.fefe"
+	install -Dm 0644 sshd_config "$pkgdir/etc/ssh/sshd_config.fefe"
+	install -Dm 0644 gitconfig "$pkgdir/etc/gitconfig"
 	install -Dm 0440 00-fefe-sudo "$pkgdir/etc/sudoers.d/00-fefe-sudo"
 	#install -Dm 0755 mdaffin-base.sh "$pkgdir/etc/profile.d/mdaffin-base.sh"
 }

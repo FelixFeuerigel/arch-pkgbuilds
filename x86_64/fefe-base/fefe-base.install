@@ -13,13 +13,13 @@ post_install() {
 
 post_upgrade() {
 	## rename package files
-	mv -f /etc/hosts.fefe /etc/hosts
-	mv -f /etc/locale.conf.fefe /etc/locale.conf
-	mv -f /etc/locale.gen.fefe /etc/locale.gen
-	mv -f /etc/xdg/reflector/reflector.conf.fefe /etc/xdg/reflector/reflector.conf
-	mv -f /etc/pacman.conf.fefe /etc/pacman.conf
-	mv -f /etc/sshd_config.fefe /etc/sshd_config
-	mv -f /etc/vconsole.conf.fefe /etc/vconsole.conf
+	cp -f /etc/hosts.fefe /etc/hosts
+	cp -f /etc/locale.conf.fefe /etc/locale.conf
+	cp -f /etc/locale.gen.fefe /etc/locale.gen
+	cp -f /etc/xdg/reflector/reflector.conf.fefe /etc/xdg/reflector/reflector.conf
+	cp -f /etc/pacman.conf.fefe /etc/pacman.conf
+	cp -f /etc/sshd_config.fefe /etc/sshd_config
+	cp -f /etc/vconsole.conf.fefe /etc/vconsole.conf
 
 	## input hostname in hosts file
 	if [ -n "$(cat /etc/hostname)" ]; then

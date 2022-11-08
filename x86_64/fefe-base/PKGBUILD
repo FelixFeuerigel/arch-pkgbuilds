@@ -108,7 +108,7 @@ package() {
 		reflector
 		dialog
 		rclone
-	) #TODO: add systemd service for rclone, include /etc/gitconfig
+	) #TODO: add systemd service for rclone
 	# audio
 	depends+=(
 		wireplumber

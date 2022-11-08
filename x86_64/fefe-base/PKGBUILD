@@ -102,12 +102,13 @@ package() {
 		htop
 		bottom
 		git
+		jdk17-openjdk
 		smbclient
 		samba
 		reflector
 		dialog
 		rclone
-	) #TODO: add systemd service for rclone
+	) #TODO: add systemd service for rclone, make fefe-base-devel
 	# audio
 	depends+=(
 		wireplumber

@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+FILE_NAME="id_ed25519"
+
+EMAIL="$(git config --system --get user.email)"
+[ -d "$HOME/.ssh" ] || mkdir $HOME/.ssh
+
+if [[ -d "$HOME/.ssh" && -f "$HOME/.ssh/$FILE_NAME.pub" ]]; then
+    echo "Existing key found!"
+else
+    echo "No ssh key for GitHub found!"
+    echo "Generating new ssh key:"
+
+    ssh-keygen -t ed25519 -f "FILE_NAME" -C "$EMAIL"
+fi
+
+echo
+echo "Open GitHub: https://github.com/settings/keys"
+echo "and add the following key:"
+echo "  $(cat ~/.ssh/id_ed25519.pub)"

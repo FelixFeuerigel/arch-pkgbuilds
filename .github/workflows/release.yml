@@ -48,8 +48,8 @@ jobs:
                   sources=$( find . -mindepth 2  -not -name PKGBUILD -not -name *.install )
                   echo -e "\n ### Moving source files of: ${x} ###"
                   for y in ${sources}; do
-                      echo "Moving ${y} to x86_64/${x}"
-                      mv "${y}" .
+                      echo "Moving ${y} to x86_64/${x}/"
+                      cp "${y}" .
                   done
 
                   sudo -u nobody updpkgsums PKGBUILD || ( echo "ERROR: FAILED TO UPDATE CHECKSUMS OF PACKAGE: ${x}" && exit 1 )

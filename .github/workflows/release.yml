@@ -45,7 +45,7 @@ jobs:
           
               if [ $(find . -mindepth 1  -not -name PKGBUILD -not -name *.install | wc -l) -gt 0 ]; then
 
-                  sources=$( find . -mindepth 1  -not -name PKGBUILD -not -name *.install )
+                  sources=$( find . -mindepth 2  -not -name PKGBUILD -not -name *.install )
                   echo -e "\n ### Moving source files of: ${x} ###"
                   for y in ${sources}; do
                       echo "Moving ${y} to x86_64/${x}"

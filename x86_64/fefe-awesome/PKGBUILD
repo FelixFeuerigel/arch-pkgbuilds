@@ -62,6 +62,7 @@ package() {
 	depends+=(
 		lxsession # a graphical authentication agent
 	)
+	#TODO: missing programs for notifications
 
 	install -Dm 0644 rc.lua "$pkgdir/etc/xdg/awesome/rc.lua.fefe"
 }

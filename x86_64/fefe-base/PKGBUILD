@@ -38,6 +38,7 @@ source=(
 	"sshd_config"
 	"gitconfig"
 	"fefe-git-key"
+	"fefe-rclone"
 )
 noextract=()
 b2sums=()
@@ -149,5 +150,6 @@ package() {
 	install -Dm 0644 sshd_config "$pkgdir/etc/ssh/sshd_config.fefe"
 	install -Dm 0644 gitconfig "$pkgdir/etc/gitconfig"
 	install -Dm 0755 fefe-git-key "$pkgdir/usr/local/bin/fefe-git-key"
+	install -Dm 0755 fefe-rclone "$pkgdir/usr/local/bin/fefe-rclone"
 	install -Dm 0440 00-fefe-sudo "$pkgdir/etc/sudoers.d/00-fefe-sudo"
 }

@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# generates a ssh key for GitHub if non existant and outputs it with a link to the relevent GitHub settings page
+
 FILE_NAME="id_ed25519"
 
 EMAIL="$(git config --system --get user.email)"
@@ -19,4 +21,4 @@ fi
 echo
 echo "Open GitHub: https://github.com/settings/keys"
 echo "and add the following key:"
-echo "  $(cat ~/.ssh/id_ed25519.pub)"
+echo "$(cat ~/.ssh/id_ed25519.pub)"

@@ -37,17 +37,28 @@ export_rclone () {
     echo ""
 }
 
-export_github () {
+export_git () {
     KEEPASS_ENTRY="/linux-config/gitconfig"
-    CONF_DEST="$HOME/.config/rclone/rclone.conf"
+    CONF_DEST="$HOME/.config/git/"
+    CONF_FILE="config"
+
+    CONF_PATH="$CONF_DEST$CONF_FILE"
 
     echo "Exporting $KEEPASS_ENTRY:"
     echo ""
     if echo "$PASSWORD" | keepassxc-cli show -q $KEEPASS_FILE $KEEPASS_ENTRY; then
-        [ -f  $CONF_DEST ] && cp $CONF_DEST "$CONF_DEST.backup"
-        # echo "$PASSWORD" | keepassxc-cli attachment-export -q  $KEEPASS_FILE $KEEPASS_ENTRY rclone.conf $CONF_DEST
+        [ -f  "$CONF_PATH" ] && cp "$CONF_PATH" "$CONF_PATH.backup"
+
+        git config --global --unset-all user.name
+        git config --global user.name "$( echo "$PASSWORD" | keepassxc-cli show -q -a UserName $KEEPASS_FILE $KEEPASS_ENTRY )"
+        git config --global --unset-all user.email
+        git config --global user.email "$( echo "$PASSWORD" | keepassxc-cli show -q -a EMail $KEEPASS_FILE $KEEPASS_ENTRY )"
+
+        [ -d $CONF_DEST ] || mkdir -p $CONF_DEST
+        [ -f $HOME/.gitconfig ] && mv $HOME/.gitconfig $CONF_PATH
+
         echo ""
-        echo "Exported $KEEPASS_ENTRY to $CONF_DEST"
+        echo "Exported $KEEPASS_ENTRY to $CONF_PATH"
     else
         echo ""
         echo "WARNING:"
@@ -60,4 +71,4 @@ export_github () {
 get_keepass_password
 
 export_rclone
-# export_github
+export_git

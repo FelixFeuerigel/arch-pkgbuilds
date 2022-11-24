@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -euo pipefail
+
+KEEPASS_FILE="$HOME/.data/keepass/PwdDatenbank.kdbx"
+PASSWORD=$1
+
+get_keepass_password (){
+    while [[ $PASSWORD=="" || ! $( echo "$PASSWORD" | keepassxc-cli db-info -q $KEEPASS_FILE ) ]]
+    do
+        PASSWORD=$(dialog --stdout --insecure --passwordbox "Enter password for KeePass database" 0 0)
+        clear
+        echo "Testing password ..."
+    done
+    echo "Password accepted!"
+    echo ""
+    echo ""
+}
+
+export_rclone () {
+    KEEPASS_ENTRY="/linux-config/rclone.conf"
+    CONF_DEST="$HOME/.config/rclone/rclone.conf"
+
+    echo "Exporting $KEEPASS_ENTRY:"
+    echo ""
+    if echo "$PASSWORD" | keepassxc-cli show -q $KEEPASS_FILE $KEEPASS_ENTRY; then
+        [ -f  $CONF_DEST ] && cp $CONF_DEST "$CONF_DEST.backup"
+        echo "$PASSWORD" | keepassxc-cli attachment-export -q  $KEEPASS_FILE $KEEPASS_ENTRY rclone.conf $CONF_DEST
+        echo ""
+        echo "Exported $KEEPASS_ENTRY to $CONF_DEST"
+    else
+        echo ""
+        echo "WARNING:"
+        echo "$KEEPASS_ENTRY not found!"
+    fi
+    echo ""
+    echo ""
+}
+
+export_github () {
+    KEEPASS_ENTRY="/linux-config/gitconfig"
+    CONF_DEST="$HOME/.config/rclone/rclone.conf"
+
+    echo "Exporting $KEEPASS_ENTRY:"
+    echo ""
+    if echo "$PASSWORD" | keepassxc-cli show -q $KEEPASS_FILE $KEEPASS_ENTRY; then
+        [ -f  $CONF_DEST ] && cp $CONF_DEST "$CONF_DEST.backup"
+        # echo "$PASSWORD" | keepassxc-cli attachment-export -q  $KEEPASS_FILE $KEEPASS_ENTRY rclone.conf $CONF_DEST
+        echo ""
+        echo "Exported $KEEPASS_ENTRY to $CONF_DEST"
+    else
+        echo ""
+        echo "WARNING:"
+        echo "$KEEPASS_ENTRY not found!"
+    fi
+    echo ""
+    echo ""
+}
+
+get_keepass_password
+
+export_rclone
+# export_github

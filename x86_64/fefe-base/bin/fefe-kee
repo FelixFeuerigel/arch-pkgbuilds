@@ -72,3 +72,5 @@ get_keepass_password
 
 export_rclone
 export_git
+#TODO: add ssh keys
+#TODO: add wifi configs

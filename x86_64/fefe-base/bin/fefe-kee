@@ -5,6 +5,7 @@ set -euo pipefail
 KEEPASS_FILE="$HOME/.data/keepass/PwdDatenbank.kdbx"
 PASSWORD=$1
 
+# get and save database password
 get_keepass_password (){
     while [[ $PASSWORD=="" || ! $( echo "$PASSWORD" | keepassxc-cli db-info -q $KEEPASS_FILE ) ]]
     do
@@ -17,6 +18,7 @@ get_keepass_password (){
     echo ""
 }
 
+# export the rclone config file out of database into HOME dir
 export_rclone () {
     KEEPASS_ENTRY="/linux-config/rclone.conf"
     CONF_DEST="$HOME/.config/rclone/rclone.conf"
@@ -37,6 +39,7 @@ export_rclone () {
     echo ""
 }
 
+# export user git credentials
 export_git () {
     KEEPASS_ENTRY="/linux-config/gitconfig"
     CONF_DEST="$HOME/.config/git/"

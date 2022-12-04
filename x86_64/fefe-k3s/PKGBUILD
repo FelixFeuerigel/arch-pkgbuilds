@@ -1,0 +1,50 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-k3s
+pkgdesc="installs k3s with custom conifg"
+
+url="https://docs.k3s.io/installation/configuration#configuration-file"
+license=("unknown")
+arch=("any")
+groups=()
+pkgver=0.0.1
+pkgver() {
+	date +%Y%m%d.%H%M.%S
+}
+pkgrel=1
+epoch=0
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=fefe-k3s.install
+changelog=
+source=(
+	"fefe-k3s"
+)
+noextract=()
+b2sums=()
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	depends=(
+		fefe-base
+	)
+
+	install -Dm 0755 fefe-k3s "$pkgdir/usr/local/bin/fefe-k3s"
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# create an arch iso
+# https://gitlab.archlinux.org/archlinux/archiso/-/blob/master/docs/README.profile.rst
+
+mkarchiso -v -w /path/to/work_dir -o /path/to/out_dir /path/to/profile/
+# with enough memory use ram as tmp storage
+mkarchiso -v -w /tmp/archiso-tmp /path/to/profile/
+
+#delete tmp files
+rm -rf /path/to/work_dir
+
+#TODO:ask if keepass file should be included in iso

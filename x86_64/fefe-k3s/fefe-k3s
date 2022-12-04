@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# install k3s server node
+curl -sfL https://get.k3s.io | sh -
+
+#TODO: ask if server or worker node should be installed
+#TODO: ask if node should use join token of keepass file

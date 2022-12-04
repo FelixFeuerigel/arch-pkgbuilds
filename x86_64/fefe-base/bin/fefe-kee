@@ -3,7 +3,7 @@
 set -euo pipefail
 
 KEEPASS_FILE="$HOME/.data/keepass/PwdDatenbank.kdbx"
-if [ -z ${$1+x} ]; then PASSWORD=$1;else PASSWORD="" fi
+if [[ "${1:+x}" != "" ]]; then PASSWORD=$1;else PASSWORD=""; fi
 
 # get and save database password
 get_keepass_password (){

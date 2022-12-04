@@ -3,11 +3,11 @@
 set -euo pipefail
 
 KEEPASS_FILE="$HOME/.data/keepass/PwdDatenbank.kdbx"
-PASSWORD=$1
+if [ -z ${$1+x} ]; then PASSWORD=$1;else PASSWORD="" fi
 
 # get and save database password
 get_keepass_password (){
-    while [[ $PASSWORD=="" || ! $( echo "$PASSWORD" | keepassxc-cli db-info -q $KEEPASS_FILE ) ]]
+    while [[ ! $( echo "$PASSWORD" | keepassxc-cli db-info -q $KEEPASS_FILE ) ]]
     do
         PASSWORD=$(dialog --stdout --insecure --passwordbox "Enter password for KeePass database" 0 0)
         clear

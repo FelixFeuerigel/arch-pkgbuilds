@@ -1,0 +1,13 @@
+[Unit]
+Description=Sync files with rclone every 10 min.
+
+[Timer]
+OnStartupSec=30s
+OnUnitActiveSec=10min
+AccuracySec=1m
+RandomizedDelaySec=30s
+
+Unit=fefe-rclone-kee.service
+
+[Install]
+ WantedBy=timers.target

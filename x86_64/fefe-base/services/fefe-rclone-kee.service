@@ -1,0 +1,18 @@
+[Unit]
+Description=Sync files with rclone.
+Documentation=https://rclone.org/docs/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+execute "rclone copy OneDrive:KeePass/ ~/documents/keepass/" 
+# execute "rclone bisync OneDrive:KeePass/ ~/.data/keepass/" --check-access --suffix .bak --exclude "*.bak"
+# ExecStart=/usr/bin/reflector @/etc/xdg/reflector/reflector.conf
+
+[Install]
+WantedBy=fefe-rclone-kee.timer
+
+#TODO: save .service and .timer in /etc/systemd/user/
+#TODO: use file monitoring https://www.linux.com/topic/desktop/systemd-services-monitoring-files-and-directories/
+#TODO: run "systemctl --user enable fefe-rclone-kee.timer" in installer

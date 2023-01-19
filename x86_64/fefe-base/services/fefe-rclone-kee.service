@@ -6,9 +6,9 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-execute "rclone copy OneDrive:KeePass/ ~/Dokumente/keepass/" 
+# execute "rclone copy OneDrive:KeePass/ ~/Dokumente/keepass/" 
 # execute "rclone bisync OneDrive:KeePass/ ~/Dokumente/keepass/" --check-access --suffix .bak --exclude "*.bak"
-# ExecStart=/usr/bin/reflector @/etc/xdg/reflector/reflector.conf
+ExecStart=rclone copy OneDrive:KeePass/ ~/Dokumente/keepass/
 
 [Install]
 WantedBy=fefe-rclone-kee.timer

@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-pages
 
 on:
   push:
@@ -12,7 +12,7 @@ env:
   DB_NAME: fefe-repo
 
 jobs:
-  deploy:
+  build-pages-artifact:
     runs-on: ubuntu-latest
     container:
       image: archlinux:base-devel
@@ -98,3 +98,26 @@ jobs:
           path: ${{ env.GHPAGE_DIR }} # or path/to/static_assets
           name: 'github-pages'
           retention-days: "1"
+
+  deploy:
+    # Add a dependency to the build job
+    needs: build-pages-artifact
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+        with:
+          artifact_name: 'github-pages'

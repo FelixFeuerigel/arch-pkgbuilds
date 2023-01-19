@@ -40,6 +40,8 @@ source=(
 	"fefe-git-key"
 	"fefe-kee"
 	"fefe-iso"
+	"fefe-rclone-kee.service"
+	"fefe-rclone-kee.timer"
 )
 noextract=()
 b2sums=()
@@ -151,8 +153,10 @@ package() {
 	install -Dm 0644 vconsole.conf "$pkgdir/etc/vconsole.conf.fefe"
 	install -Dm 0644 sshd_config "$pkgdir/etc/ssh/sshd_config.fefe"
 	install -Dm 0644 gitconfig "$pkgdir/etc/gitconfig"
+	install -Dm 0644 fefe-rclone-kee.service "$pkgdir/etc/systemd/user/fefe-rclone-kee.service"
+	install -Dm 0644 fefe-rclone-kee.timer "$pkgdir/etc/systemd/user/fefe-rclone-kee.timer"
 	install -Dm 0755 fefe-git-key "$pkgdir/usr/local/bin/fefe-git-key"
-	install -Dm 0755 fefe-kee "$pkgdir/usr/local/bin/fefe-kee"
-	install -Dm 0755 fefe-iso "$pkgdir/usr/local/bin/fefe-iso"
+	install -Dm 0755 fefe-kee-export "$pkgdir/usr/local/bin/fefe-kee-export"
+	install -Dm 0755 fefe-iso-build "$pkgdir/usr/local/bin/fefe-iso-build"
 	install -Dm 0440 00-fefe-sudo "$pkgdir/etc/sudoers.d/00-fefe-sudo"
 }

@@ -38,8 +38,8 @@ source=(
 	"sshd_config"
 	"gitconfig"
 	"fefe-git-key"
-	"fefe-kee"
-	"fefe-iso"
+	"fefe-kee-export"
+	"fefe-iso-build"
 	"fefe-rclone-kee.service"
 	"fefe-rclone-kee.timer"
 )

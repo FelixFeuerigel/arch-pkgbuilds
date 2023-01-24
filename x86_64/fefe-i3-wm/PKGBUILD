@@ -23,7 +23,7 @@ conflicts=()
 replaces=()
 backup=()
 options=()
-install=fefe-i3-wm.install
+#install=fefe-i3-wm.install
 changelog=
 source=(
 )

@@ -1,0 +1,65 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-fefe-i3-wm
+pkgdesc="Awesome meta package for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+pkgver=0.0.1
+pkgver() {
+	date +%Y%m%d.%H%M.%S
+}
+pkgrel=1
+epoch=0
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+install=fefe-i3-wm.install
+changelog=
+source=(
+)
+noextract=()
+b2sums=()
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	depends=(
+		fefe-base-desktop
+	)
+	# Desktop base packages
+	depends+=( 
+		nitrogen #walpaper setter
+		dmenu
+		rofi
+		picom
+	)
+	# CLI tools
+	depends+=( 
+		playerctl # media player controller CLI
+		light # Program to easily change brightness on backlight-controllers
+	)
+	# background system programms
+	depends+=(
+		lxsession # a graphical authentication agent
+	)
+	#TODO: missing programs for notifications
+
+}

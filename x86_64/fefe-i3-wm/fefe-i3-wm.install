@@ -1,0 +1,8 @@
+post_install() {
+	post_upgrade
+}
+
+post_upgrade() {
+	## rename package files
+	#cp -f /etc/xdg/awesome/rc.lua.fefe /etc/xdg/awesome/rc.lua
+}

@@ -1,6 +1,6 @@
 # Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
 
-pkgname=fefe-fefe-i3-wm
+pkgname=fefe-i3-wm
 pkgdesc="Awesome meta package for fefe systems"
 
 url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
@@ -46,6 +46,7 @@ package() {
 	)
 	# Desktop base packages
 	depends+=( 
+		i3-wm
 		nitrogen #walpaper setter
 		dmenu
 		rofi

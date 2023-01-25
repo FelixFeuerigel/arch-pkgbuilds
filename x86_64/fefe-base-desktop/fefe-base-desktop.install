@@ -3,9 +3,6 @@ post_install() {
 }
 
 post_upgrade() {
-	# enable Services for autostart
-    systemctl enable --now sddm.service
-
 	# move config files to all HOME dictonarys
 	## cp /etc/fefe/.config/alacritty/alacritty.yml home/*all_home_dirs*/.config/alacritty/alacritty.yml
 	# readarray -t home_dirs <<< "$(find /home/* -maxdepth 0 -type d)"
@@ -21,4 +18,8 @@ post_upgrade() {
 		echo "linking /etc/fefe/.config to $x/.config"
 		ln -sf /etc/fefe/.config $x/.config
 	done
+
+	# enable Services for autostart
+    systemctl enable --now sddm.service
+
 }

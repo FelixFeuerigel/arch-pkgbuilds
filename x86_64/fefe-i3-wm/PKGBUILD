@@ -47,6 +47,7 @@ package() {
 	# Desktop base packages
 	depends+=( 
 		i3-wm
+		i3status
 		nitrogen #walpaper setter
 		dmenu
 		rofi

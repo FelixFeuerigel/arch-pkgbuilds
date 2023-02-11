@@ -26,6 +26,7 @@ options=()
 #install=fefe-i3-wm.install
 changelog=
 source=(
+	"config"
 )
 noextract=()
 b2sums=()
@@ -48,6 +49,7 @@ package() {
 	depends+=( 
 		i3-wm
 		i3status
+		polybar
 		nitrogen #walpaper setter
 		dmenu
 		rofi
@@ -64,4 +66,5 @@ package() {
 	)
 	#TODO: missing programs for notifications
 
+	install -Dm 0644 config "$pkgdir/etc/xdg/i3/config.fefe"
 }

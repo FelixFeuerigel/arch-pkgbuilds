@@ -58,6 +58,14 @@ package() {
 	# gaming softwawre
 	depends+=(
 		steam
+	)
+	# fonts
+	depends+=(
+		noto-fonts
+		noto-fonts-extra # Google Noto TTF fonts - additional variants
+		noto-fonts-emoji # Google Noto emoji fonts
+		noto-fonts-cjk # Google Noto CJK fonts
+		ttf-noto-nerd # Patched font Noto from nerd fonts library
 		ttf-liberation # Arial font alternative
 	)
 	# KDE connect

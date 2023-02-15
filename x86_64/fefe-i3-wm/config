@@ -197,7 +197,10 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
+
+# autostart
 exec --no-startup-id polybar
+exec --no-startup-id "pycom -b"
 
 # add gaps
 gaps inner 7px

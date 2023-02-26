@@ -68,6 +68,11 @@ package() {
 		ttf-noto-nerd # Patched font Noto from nerd fonts library
 		ttf-liberation # Arial font alternative
 	)
+	# Qt and GTK themes
+	depends+=(
+		breeze # Qt theme
+		breeze-gtk # GTK theme
+	)
 	# KDE connect
 	depends+=(
 		sshfs
@@ -88,14 +93,14 @@ package() {
 	# audio GUI
 	depends+=(
 		qpwgraph # pipewire audio graph
-		pavucontrol # pulse audio config tool
+		pavucontrol # PulseAudio config tool
 		qjackctl # alsa audio tool
 	)
 	# settigs programms
 	depends+=(
 		xfce4-settings # Settings manager
 		xfce4-power-manager
-		lxappearance # a GTK+ theme switcher
+		lxappearance-gtk3 # a GTK+ theme switcher
 	)
 	# terminal
 	depends+=(

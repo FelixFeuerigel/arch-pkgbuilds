@@ -113,7 +113,7 @@ package() {
 		reflector
 		dialog
 		rclone
-	) #TODO: add systemd service for rclone
+	) #TODO: https://wiki.archlinux.org/title/Display_Power_Management_Signaling
 	# audio
 	depends+=(
 		wireplumber

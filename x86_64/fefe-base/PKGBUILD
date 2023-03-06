@@ -110,6 +110,7 @@ package() {
 		bash-completion
 		smbclient
 		samba
+		nfs-utils
 		reflector
 		dialog
 		rclone

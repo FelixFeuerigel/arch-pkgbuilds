@@ -1,0 +1,57 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-archstrap
+pkgdesc="Base system configuration for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+pkgver=0.0.1
+pkgver() {
+	# printf "r%s" "$(git log --source -n 1 --pretty='format:%ct.%h' -- PKGBUILD)"
+	# printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	date +%Y%m%d.%H%M.%S
+}
+pkgrel=1
+epoch=0
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+#install=fefe-archstrap.install
+changelog=
+source=(
+	"fefe-archstrap.sh"
+)
+noextract=()
+b2sums=()
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
+
+package() {
+	depends=(
+		base
+		linux
+		reflector
+		dialog
+	)
+
+	install -Dm 0755 fefe-archstrap.sh "$pkgdir/usr/local/bin/fefe-archstrap"
+}

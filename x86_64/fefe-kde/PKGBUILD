@@ -45,6 +45,7 @@ package() {
 	)
 	# Desktop base packages
 	depends+=(
+		phonon-qt5-gstreamer 
 		plasma-meta
 	)
 	# printing

@@ -81,8 +81,15 @@ package() {
 		tumbler # file thumbnail support
 		ffmpegthumbnailer
 	)
-	# audio GUI
+	# audio
 	depends+=(
+		wireplumber # pipewire session manager
+		pipewire # sound server
+		lib32-pipewire # multilib support
+		pipewire-alsa
+		pipewire-pulse
+		pipewire-jack
+		lib32-pipewire-jack
 		qpwgraph # pipewire audio graph
 		pavucontrol # PulseAudio config tool
 		qjackctl # alsa audio tool

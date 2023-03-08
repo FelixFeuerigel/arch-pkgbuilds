@@ -126,16 +126,6 @@ package() {
 		dialog
 		rclone
 	) #TODO: https://wiki.archlinux.org/title/Display_Power_Management_Signaling
-	# audio
-	depends+=(
-		wireplumber
-		pipewire
-		lib32-pipewire
-		pipewire-alsa
-		pipewire-pulse
-		pipewire-jack
-		lib32-pipewire-jack
-	)
 	# bluetooth
 	depends+=(
 		bluez

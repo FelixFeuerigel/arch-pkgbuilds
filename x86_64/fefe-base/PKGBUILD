@@ -56,8 +56,6 @@ validpgpkeys=()
 #check() {
 #}
 
-#TODO: add a systemd.service and .timer for "pacman -Syuw" to periodicaly download updates without installing.
-
 package() {
 	# Base packages
 	depends=(
@@ -93,12 +91,6 @@ package() {
 		texinfo
 		which
 	)
-	# for building packages
-	depends+=( 
-		pacman-contrib
-		devtools
-		archiso
-	)
 	# fonts
 	depends+=(
 		noto-fonts
@@ -117,7 +109,6 @@ package() {
 		man-db
 		man-pages
 		nano
-		git
 		bash-completion
 		smbclient
 		samba
@@ -125,6 +116,7 @@ package() {
 		reflector
 		dialog
 		rclone
+		fish
 	) #TODO: https://wiki.archlinux.org/title/Display_Power_Management_Signaling
 	# bluetooth
 	depends+=(
@@ -137,15 +129,6 @@ package() {
 		openssh
 		mosh
 	)	#TODO: harden ssh and add sshguard & firewald
-	# devel / code
-	depends+=(
-		neovim
-		fish
-		htop
-		bottom
-		tmux
-		jdk17-openjdk
-	)
 
 	install -Dm 0644 hosts "$pkgdir/etc/hosts.fefe"
 	install -Dm 0644 locale.conf "$pkgdir/etc/locale.conf.fefe"

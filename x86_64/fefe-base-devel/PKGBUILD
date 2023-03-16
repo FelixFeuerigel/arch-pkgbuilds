@@ -1,0 +1,100 @@
+# Maintainer: felix_feuerigel <https://github.com/FelixFeuerigel/arch-pkgbuilds>
+
+pkgname=fefe-base-devel
+pkgdesc="Base system configuration for fefe systems"
+
+url="https://github.com/FelixFeuerigel/arch-pkgbuilds"
+license=("unknown")
+arch=("any")
+groups=()
+pkgver=0.0.1
+pkgver() {
+	# printf "r%s" "$(git log --source -n 1 --pretty='format:%ct.%h' -- PKGBUILD)"
+	# printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+	date +%Y%m%d.%H%M.%S
+}
+pkgrel=1
+epoch=0
+groups=()
+depends=()
+makedepends=()
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+replaces=()
+backup=()
+options=()
+#install=fefe-base-devel.install
+changelog=
+source=()
+noextract=()
+b2sums=()
+validpgpkeys=()
+
+#prepare() {
+#}
+
+#build() {
+#}
+
+#check() {
+#}
+
+package() {
+	depends=(
+		fefe-base
+	)
+	# Base Devel
+	depends+=(
+		archlinux-keyring
+		autoconf
+		automake
+		binutils
+		bison
+		fakeroot
+		file
+		findutils
+		flex
+		gawk
+		gcc
+		gettext
+		grep
+		groff
+		gzip
+		libtool
+		m4
+		make
+		pacman
+		patch
+		pkgconf
+		sed
+		sudo
+		texinfo
+		which
+	)
+	# for building arch packages
+	depends+=( 
+		pacman-contrib
+		devtools
+		archiso
+	)
+	# CLI
+	depends+=(
+		git
+		gnu-netcat
+	)
+	# TUI
+	depends+=(
+		tmux
+		neovim
+		lazygit
+		htop
+		bottom
+		k9s
+	)
+	# programming languages
+	depends+=(
+		jdk17-openjdk
+	)
+}

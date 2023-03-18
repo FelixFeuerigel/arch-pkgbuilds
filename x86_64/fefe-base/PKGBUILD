@@ -109,6 +109,7 @@ package() {
 		man-db
 		man-pages
 		nano
+		neovim
 		bash-completion
 		smbclient
 		samba
@@ -123,6 +124,13 @@ package() {
 		bluez
 		bluez-utils
 		blueman
+	)
+	# CLI / TUI
+	depends+=(
+		git
+		tmux
+		htop
+		bottom
 	)
 	# remote shell
 	depends+=(

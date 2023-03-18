@@ -15,7 +15,7 @@ else
     echo "No ssh key for GitHub found!"
     echo "Generating new ssh key:"
 
-    ssh-keygen -t ed25519 -f "FILE_NAME" -C "$EMAIL"
+    ssh-keygen -t ed25519 -f "$FILE_NAME" -C "$EMAIL"
 fi
 
 echo
